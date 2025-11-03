@@ -1,0 +1,68 @@
+@use "../../css/mixin";
+@use "../../css/variables";
+
+.profile {
+  &__title {
+    @include mixin.h1-48-bold;
+    margin-bottom: 64px;
+  }
+  &__selector {
+    display: flex;
+    gap: 64px;
+    margin-bottom: 64px;
+  }
+  &__btn {
+    @include mixin.body-24-reg;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    padding: 8px 0;
+    border-bottom: 1.5px solid transparent;
+
+    &-icon {
+      width: 21px;
+      height: 21px;
+
+      use {
+        fill: variables.$white-color;
+      }
+    }
+
+    &-active {
+      @include mixin.menu-desktop-active;
+    }
+  }
+
+  .active {
+    @include mixin.menu-desktop-active;
+  }
+}
+
+@include mixin.vp-1023 {
+  .profile {
+
+    &__title {
+      font-size: 32px;
+    }
+    &__selector-favorite {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include mixin.vp-600 {
+  .profile {
+    &__title {
+      @include mixin.body-24-bold;
+      margin-bottom: 40px;
+    }
+
+    &__selector {
+      gap: 24px;
+      margin-bottom: 40px;
+
+    }
+  }
+}

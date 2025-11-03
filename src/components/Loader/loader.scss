@@ -1,0 +1,98 @@
+@use '../../css/mixin';
+
+.header-loader {
+  width: 12px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 32px 0 #fff, -32px 0 #fff;
+  position: relative;
+  animation: flash 0.5s ease-out infinite alternate;
+}
+
+.loader {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: block;
+  margin: 15px auto;
+  position: relative;
+  color: #ffffff60;
+  left: -100px;
+  box-sizing: border-box;
+  animation: shadowRolling 2s linear infinite;
+}
+
+
+@include mixin.vp-1400 {
+  .header-loader {
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    border: 3px solid #ffffffad;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: transparent;
+    box-shadow: none;
+    box-sizing: border-box;
+    animation: rotation 1.5s linear infinite;
+  }
+}
+
+@keyframes flash {
+  0% {
+    background-color: #FFF2;
+    box-shadow: 32px 0 #FFF2, -32px 0 #FFF;
+  }
+  50% {
+    background-color: #FFF;
+    box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+  }
+  100% {
+    background-color: #FFF2;
+    box-shadow: 32px 0 #FFF, -32px 0 #FFF2;
+  }
+}
+
+
+@keyframes rotation {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+} 
+
+
+@keyframes shadowRolling {
+  0% {
+    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+  12% {
+    box-shadow: 100px 0 rgba(255, 255, 255, 0.5), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+  25% {
+    box-shadow: 110px 0 rgba(255, 255, 255, 0.5), 100px 0 rgba(255, 255, 255, 0.5), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+  36% {
+    box-shadow: 120px 0 rgba(255, 255, 255, 0.5), 110px 0 rgba(255, 255, 255, 0.5), 100px 0 rgba(255, 255, 255, 0.5), 0px 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 130px 0 rgba(255, 255, 255, 0.5), 120px 0 rgba(255, 255, 255, 0.5), 110px 0 rgba(255, 255, 255, 0.5), 100px 0 rgba(255, 255, 255, 0.5);
+  }
+  62% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 rgba(255, 255, 255, 0.5), 120px 0 rgba(255, 255, 255, 0.5), 110px 0 rgba(255, 255, 255, 0.5);
+  }
+  75% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 130px 0 rgba(255, 255, 255, 0.5), 120px 0 rgba(255, 255, 255, 0.5);
+  }
+  87% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 130px 0 rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+  }
+}
+      

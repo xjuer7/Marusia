@@ -1,0 +1,83 @@
+@use "../../css/mixin";
+@use "../../css/variables";
+
+.footer {
+  display: flex;
+  padding: 42px 80px;
+  justify-content: flex-end;
+  gap: 24px;
+  max-height: 120px;
+  margin-top: auto;
+
+  &__icon {
+    position: relative;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    min-width: 36px;
+    min-height: 36px;
+
+    &::after {
+      position: absolute;
+      content: "";
+      background-repeat: no-repeat;
+      width: 20px;
+      height: 20px;
+    }
+
+    &-ok::after {
+      transform: translateX(3px);
+      background-image: url("../../../public/icon/footer-icon/ok-logo.svg");
+    }
+
+    &-vk::after {
+      transform: translateY(3px);
+      background-image: url("../../../public/icon/footer-icon/vk-logo.svg");
+    }
+
+    &-youtube::after {
+      transform: translate(1px, 2px);
+      background-image: url("../../../public/icon/footer-icon/youtube-logo.svg");
+    }
+
+    &-tg::after {
+      transform: translateY(2px);
+      background-image: url("../../../public/icon/footer-icon/tg-logo.svg");
+    }
+  }
+}
+
+@include mixin.vp-600 {
+  .footer {
+    padding: 24px 20px;
+    gap: 24px;
+    justify-content: flex-start;
+    max-height: 84px;
+
+    &__icon {
+        padding: 3px;
+      min-height: 24px;
+      min-width: 24px;
+
+      &::after {
+         background-size: 13px 13px;
+      }
+
+      &-ok::after {
+        transform: translate(2px, 1px);
+      }
+
+      &-vk::after {
+        transform: translate(1px, 2px);
+      }
+
+      &-youtube::after {
+        transform: translate(1px, 1px);
+      }
+
+      &-tg::after {
+        transform: translate(1px, 2px);
+      }
+    }
+  }
+}

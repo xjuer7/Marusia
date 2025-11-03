@@ -1,0 +1,132 @@
+@use '../../css/mixin';
+.movie_list-genre {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+    row-gap: 64px;
+    list-style: none;
+    margin-bottom: 64px;
+
+    .movie_list {
+        &__item {
+                &_img {
+                    width: 100%;
+                    // min-width: 200px;
+                    height: 336px;
+                    object-fit: cover;
+                }
+
+                &_none {
+                    display: flex;
+                    width: 224px;
+                    height: 336px;
+                    background-color: rgba(0, 0, 0, 0.2);
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                }
+
+                &_none, img {
+                    border-radius: 16px;
+                    box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.33);
+                }
+            }
+
+
+            img {
+                border: 1px solid rgba(255, 255, 255, 0.25)
+            }
+            li {
+                position: relative;
+            }
+            a {
+                cursor: pointer;
+            }
+            &__num {
+                position: absolute;
+                top: -12px;
+                left: -12px;
+                padding: 8px 24px;
+                color:  rgba(106, 93, 194);
+                font-weight: 700;
+                background-color: white;
+                border-radius: 50px;
+
+            }
+
+    }
+    
+}
+
+.movie_list {
+    &__btn {
+        @include mixin.button-style-main;
+        @include mixin.button-primary-default;
+        display: flex;
+        margin: 0 auto;
+        padding: 16px 48px;
+    }
+}
+
+@include mixin.vp-1400 {
+    .movie_list {
+        &-genre {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            row-gap: 45px;
+
+            .movie_list__item {
+                &_img {
+                    width: 100%;
+                    min-height: 260px;
+                }
+            }
+        }
+        
+    }
+}
+
+@include mixin.vp-1023 {
+    .movie_list {
+        &-genre {
+            grid-template-columns: repeat(3, 1fr);
+            row-gap: 30px;
+        }
+        
+    }
+}
+
+@include mixin.vp-767 {
+    .movie_list {
+        
+        &-genre {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+
+            .movie_list__item {
+                display: flex;
+                margin: 0 auto;
+            }
+        
+    }
+}}
+
+@include mixin.vp-600 {
+    .movie_list {
+        &-genre {
+            grid-template-columns: 1fr;
+            gap: 20px;
+
+             .movie_list__item {
+
+                &_img {
+                    min-height: 502px;
+                }
+            }
+        }
+        
+    }
+}
+

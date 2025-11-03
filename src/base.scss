@@ -1,0 +1,108 @@
+@use './css/fonts';
+@use './css/mixin';
+@use'./css/variables';
+@use './css/normalize';
+
+.content {
+  padding: 32px 80px;
+  margin: 0 auto;
+  max-width: 1440px;
+  height: 100%;
+  min-height: calc(100vh - 120px);
+  position: relative;
+  animation: openWindow 1s ;
+
+
+  &__title {
+    margin-bottom: 64px;
+    position: relative;
+
+    &-btn {
+      padding-left: 40px;
+      position: relative;
+      background-color: transparent;
+      color: variables.$white-color;
+      font-size: 48px;
+      line-height: 56px;
+      font-family: "Play", sans-serif;
+      font-weight: 700;
+
+      &:before {
+        position: absolute;
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-top: 3px solid variables.$white-color;
+        border-right: 3px solid white;
+        margin-right: 10px;
+        transform: translate(-30px, 22px) rotate(-135deg);
+        transition: transform .3s ease-out;
+      }
+
+      &:hover::before {
+        transform: translate(-45px, 22px) rotate(-135deg);
+      }
+    }
+  }
+
+  &__notice {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+}
+
+@include mixin.vp-1023 {
+  .content {
+    padding: 30px 40px; 
+
+    &__title {
+      margin-bottom: 0;
+
+      &-btn {
+        font-size: 36px;
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
+
+@include mixin.vp-600 {
+  .content {
+    padding: 19px;
+    min-height: calc(100vh - 84px);
+
+    &__title {
+      @include mixin.body-24-bold;
+
+      &-btn {
+        padding-left: 60px;
+        margin-bottom: 40px;
+
+        &:before {
+          width: 7px;
+          height: 7px;
+          border-top-width: 2px ;
+          border-right-width: 2px;
+          transform: translate(-30px, 10px) rotate(-135deg);
+        }
+
+        &:hover::before,
+        &:focus-visible::before {
+        transform: translate(-35px, 10px) rotate(-135deg);
+      }
+      }
+    }
+  }
+}
+
+
+@keyframes openWindow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

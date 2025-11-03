@@ -1,0 +1,151 @@
+// @use '../base.scss';
+@use './variables';
+
+@mixin button-style {
+    @include play-bold;
+    font-size: 18px;
+    line-height: 24px;
+    border-radius: 28px;
+    color: variables.$white-color;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@mixin button-style-main {
+    @include button-style;
+    // background-color: base.$cornflower-blue;
+}
+@mixin button-primary-default {
+    background-color: variables.$cornflower-blue;
+    transition: background-color .4s ease-in-out, color .4s ease-in-out;
+
+    &:hover, &:focus-visible {
+        outline: none;
+        @include button-primary-disabled;
+    }
+}
+@mixin button-primary-disabled {
+    background-color: variables.$east-bay;
+    color: rgba(variables.$white-color, 0.5)
+}
+@mixin button-secondary-default {
+    background-color: variables.$montana;
+    transition: background-color .4s ease-in-out, color .4s ease-in-out;
+
+     &:hover, &:focus-visible {
+        outline: none;
+        @include button-secondary-disabled;
+    }
+}
+@mixin button-secondary-disabled {
+    background-color: variables.$dim-grey;
+    color: rgba(variables.$white-color, 0.5)
+}
+@mixin button-secondary-hover {
+    background-color: variables.$white-color;
+    color: variables.$black-color;
+}
+
+@mixin input-style {
+    font-size: 18px;
+    line-height: 24px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+@mixin play-bold {
+    font-family: "Play", sans-serif;
+    font-weight: 700;
+}
+
+@mixin play-reg {
+    font-family: "Play", sans-serif;
+    font-weight: 400;
+}
+
+@mixin h1-48-bold {
+    @include play-bold;
+    margin: 0;
+    padding: 0;
+    font-size: 48px;
+    line-height: 56px;
+    color: variables.$white-color
+
+}
+@mixin body-14-reg {
+    @include play-reg;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+    color: rgba(variables.$white-color, 0.5)
+}
+
+@mixin body-18-reg {
+    @include play-reg;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 0;
+    margin: 0;
+    color: rgba(variables.$white-color, 0.7)
+}
+
+@mixin body-18-bold {
+    @include play-bold;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 0;
+    margin: 0;
+    color: rgba(variables.$white-color, 1)
+}
+@mixin body-24-bold {
+    @include play-bold;
+    font-size: 24px;
+    line-height: 32px;
+    padding: 0;
+    margin: 0;
+    color: variables.$white-color;
+}
+@mixin body-24-reg {
+    @include play-reg;
+    font-size: 24px;
+    line-height: 32px;
+    padding: 0;
+    margin: 0;
+    color: variables.$white-color;
+}
+
+@mixin menu-desktop-active {
+    border-bottom: 1.5px solid variables.$heliotrope;
+}
+
+@mixin menu-mobile-active {
+    color: variables.$perano;
+}
+
+@mixin vp-1400 {
+    @media (max-width: variables.$vp-desktop) {
+        @content;
+    }
+}
+
+@mixin vp-1023 {
+    @media (max-width: variables.$vp-tablet) {
+        @content;
+    }
+}
+
+@mixin vp-767 {
+    @media (max-width: variables.$vp-mobile) {
+        @content;
+    }
+}
+
+@mixin vp-600 {
+    @media (max-width: variables.$vp-mobile-min) {
+        @content;
+    }
+}

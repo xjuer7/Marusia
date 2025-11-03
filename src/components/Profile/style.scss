@@ -1,0 +1,101 @@
+@use '../../css/mixin';
+@use '../../css/variables';
+
+.profile__card {
+    animation: openList 1s;
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 64px;
+    }
+
+    &__wrapper {
+        display: flex;
+        gap: 16px;
+    }
+    &-circle {
+        background-color: rgba(variables.$white-color, 0.5);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        padding: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__info {
+            @include mixin.play-bold;
+            @include mixin.body-24-bold;
+            vertical-align: middle;
+        }
+        &__icon {
+            width: 24px;
+            height: 24px;
+            use {
+                fill: variables.$white-color;
+            }
+        }
+    }
+    &__text{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &-abr{
+            @include mixin.body-18-reg;
+        }
+        &-name{
+            @include mixin.body-24-bold;
+        }
+    }
+
+    &__btn {
+        @include mixin.button-style-main;
+        @include mixin.button-primary-default;
+        padding: 16px 48px;
+    }
+
+   
+}
+
+@include mixin.vp-600 {
+    .profile__card {
+        &__inner {
+            margin-bottom: 40px;
+        }
+
+        &-circle {
+            width: 50px;
+            height: 50px;
+        }
+
+        &__text {
+            &-abr {
+                @include mixin.body-14-reg
+            }
+
+            &-name {
+                @include mixin.body-18-bold;
+            }
+        }
+
+        &__btn {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+@keyframes openList {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}

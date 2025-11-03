@@ -1,0 +1,49 @@
+@use '../../css/mixin';
+
+.genre {
+    &_list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        // flex-wrap: wrap;
+        gap: 40px;
+        row-gap: 60px;
+        list-style: none;
+    }
+
+    &_item {
+        transition: transform 0.3s ease-in;
+
+         &:hover, &:focus-visible {
+            transform: scale(1.03);
+        }
+    }
+}
+
+@include mixin.vp-1400 {
+    .genre {
+        &_list {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            row-gap: 45px;
+        }
+    }
+}
+
+@include mixin.vp-1023 {
+    .genre {
+        &_list {
+            grid-template-columns: repeat(2, 1fr);
+            padding-top: 40px;
+            gap: 24px;
+        }
+    }
+}
+
+@include mixin.vp-600 {
+    .genre {
+        &_list {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+

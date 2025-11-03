@@ -1,0 +1,67 @@
+
+@use '../../css/mixin';
+@use '../../css/variables';
+
+.movie__parameter {
+    &_title {
+        margin-bottom: 64px;
+    }
+
+    &_table {
+        @include mixin.body-18-reg;
+    }
+    &_item {
+        display: flex;
+        gap: 8px;
+    }
+
+    &_wrapper {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        min-width: 320px;
+        gap: 8px;
+    }
+
+    &_empty {
+        border-bottom: 1.5px dashed rgba(variables.$white-color, 50%);
+        margin-bottom: 6px;
+        width: 100%;
+    }
+    &_name {
+        white-space: nowrap;
+    }
+
+}
+tbody {
+    display: flex;
+        flex-direction: column;
+        gap: 24px;
+}
+
+@include mixin.vp-767 {
+    .movie__parameter {
+        &_title {
+            @include mixin.body-24-bold;
+            margin-bottom: 40px;
+        }
+
+        td {
+            @include mixin.body-18-reg;
+            color: variables.$white-color;
+        }
+
+         &_item {
+            flex-direction: column;
+            gap: 4px
+        }
+
+        &_name {
+            @include mixin.body-14-reg;
+        }
+
+        &_empty {
+            display: none;
+        }
+    }
+}
