@@ -17,7 +17,7 @@ npm run preview
 ```
 
 
-![](public/readme-img/screenshots.gif)
+![](public/readme-img/screenshots-optim.gif)
 
 Десктопная версия
 ![](public/readme-img/readme-desktop.png)
