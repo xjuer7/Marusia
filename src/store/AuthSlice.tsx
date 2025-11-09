@@ -1,7 +1,4 @@
-import {
-  createSlice,
-} from "@reduxjs/toolkit";
-
+import { createSlice } from "@reduxjs/toolkit";
 
 interface UserInfo {
   email: string;
@@ -11,26 +8,30 @@ interface UserInfo {
 }
 
 interface InitialState {
-    loginModalWindow: boolean;
-    isRegistration: boolean;
-    isAuthenticated: boolean;
-    authType: string;
-    userInfo: Partial<UserInfo>;
-    errorMessage: string;
+  loginModalWindow: boolean;
+  isRegistration: boolean;
+  isAuthenticated: boolean;
+  authType: string;
+  userInfo: Partial<UserInfo>;
+  errorMessage: string;
+}
+
+export interface AuthInitialState {
+  auth: InitialState
 }
 
 const initialState: InitialState = {
-    loginModalWindow: false,
-    isRegistration: false,
-    isAuthenticated: false,
-    authType: "auth",
-    userInfo: {
-        email: "",
-        favorites: [],
-        name: "",
-        surname: "",
-    },
-    errorMessage: "",
+  loginModalWindow: false,
+  isRegistration: false,
+  isAuthenticated: false,
+  authType: "auth",
+  userInfo: {
+    email: "",
+    favorites: [],
+    name: "",
+    surname: "",
+  },
+  errorMessage: "",
 };
 
 const authSlice = createSlice({
@@ -38,10 +39,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     authModalOpen(state) {
-        state.loginModalWindow = true;
+      state.loginModalWindow = true;
     },
     authModalClose(state) {
-        state.loginModalWindow = false;
+      state.loginModalWindow = false;
     },
     registrationSuccess(state) {
       state.isRegistration = true;
@@ -73,8 +74,8 @@ const authSlice = createSlice({
 });
 
 export const {
-    authModalOpen,
-    authModalClose,
+  authModalOpen,
+  authModalClose,
   registrationSuccess,
   registrationFailure,
   loginSuccess,

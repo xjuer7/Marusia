@@ -3,7 +3,7 @@ import {
   getMovieRandom,
   getMoviesGenre,
   getMoviesTOP10,
-} from "./MoviesApi";
+} from "./MoviesApi.ts";
 
 const Api = {
   getMovie,

@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
-import { Account } from "../Account/Account";
-import HeaderInput from "./HeaderInput/HeaderInput";
+import { Account } from "../Account/Account.tsx";
+import HeaderInput from "./HeaderInput/HeaderInput.tsx";
 import { useSelector } from "react-redux";
+import { UISliceState } from "../../store/UISlice.tsx";
 import "./style.scss";
 
 
 const Header = () => {
 
-  const windowWidthState = useSelector((state) => state.ui.windowWidth)
-  const pathname = useSelector((state) => state.ui.activeURL);
+  const windowWidthState = useSelector((state:UISliceState) => state.ui.windowWidth)
+  const pathname = useSelector((state:UISliceState) => state.ui.activeURL);
 
   return (
     <header className={`header`}>

@@ -1,22 +1,23 @@
-import Api from "../../api/api";
+import Api from "../../api/api.ts";
 import { useEffect, lazy } from "react";
-import MovieRandom from "../../components/MovieRandom/MovieRandom"
+import MovieRandom from "../../components/MovieRandom/MovieRandom.tsx"
 import { useDispatch, useSelector } from "react-redux";
-import { changeActiveUrl } from "../../store/UISlice";
+import { changeActiveUrl } from "../../store/UISlice.tsx";
 import { useLocation } from "react-router-dom";
-import { Loader } from "../../components/Loader/Loader";
+import { Loader } from "../../components/Loader/Loader.tsx";
 import { Suspense } from "react";
-import { setMoviesList } from "../../store/MovieSlice";
+import { setMoviesList } from "../../store/MovieSlice.tsx";
+import { MovieSliceState } from "../../store/MovieSlice.tsx";
 import '../../base.scss'
 
-const LazyMoviesListTop = lazy(() => import("../../components/MoviesListTop/MoviesListTop/MoviesListTop"))
+const LazyMoviesListTop = lazy(() => import("../../components/MoviesListTop/MoviesListTop/MoviesListTop.tsx"))
 
 
 const MainPage = () => {
 
     const location = useLocation()
     const dispatch = useDispatch()
-    const dataState = useSelector((state) => state.data.moviesList)
+    const dataState = useSelector((state:MovieSliceState) => state.data.moviesList)
     
     const getData = async (): Promise<void> => {
         const data = await Api.getMoviesTOP10();

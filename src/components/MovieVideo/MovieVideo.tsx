@@ -1,9 +1,9 @@
 
 import ReactPlayer from 'react-player'
-import { Loader } from '../Loader/Loader'
+import { Loader } from '../Loader/Loader.tsx'
 import './style.scss'
 
-const MovieVideo = ({videoSrc, onClick}) => {
+const MovieVideo = ({videoSrc, onClick}: {videoSrc:string, onClick: () => void}) => {
     return (
         <div className='movie-video__overlay'>
             <div className='movie-video__wrapper'>

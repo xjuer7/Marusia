@@ -23,7 +23,7 @@ const genreImagesUrl: Record<string, string> = {
     "war": '/img/war.webp',
 }
 
-export const GenreItems = ({ title }) => {
+export const GenreItems = ({ title }: {title: string}) => {
     const imageUrl = genreImagesUrl[title as keyof typeof genreImagesUrl]
 
     return (

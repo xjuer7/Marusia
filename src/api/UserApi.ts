@@ -1,6 +1,6 @@
-import { validateResponse } from "./validateResponse";
-import { UserLogin, UserRegister, User, UserSchema } from "../models/User";
-import { BASE_URL } from "./config";
+import { validateResponse } from "./validateResponse.ts";
+import { UserLogin, UserRegister, User, UserSchema } from "../models/User.ts";
+import { BASE_URL } from "./config.ts";
 
 export async function login(data: UserLogin): Promise<void> {
     return fetch(`${BASE_URL}/auth/login` , {

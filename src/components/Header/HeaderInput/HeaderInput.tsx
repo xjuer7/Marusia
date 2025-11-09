@@ -1,23 +1,26 @@
 import { useSelector, useDispatch} from "react-redux";
-import { useRef, useState, useEffect} from "react";
-import { basicUrl } from "../../../api/MoviesApi";
-import { Movies } from "../../../models/Movies";
-import { isSearchList, isButtonInp, isMobile, isWindowWidth,styleRemove, setInpValue} from "../../../store/UISlice";
+import { useRef, useState, useEffect, LegacyRef} from "react";
+import { basicUrl } from "../../../api/MoviesApi.ts";
+import { Movies } from "../../../models/Movies.ts";
+import { isSearchList, isButtonInp, isMobile, isWindowWidth,styleRemove, setInpValue, UISliceState} from "../../../store/UISlice.tsx";
 
-import HeaderSearchList from "../HeaderSearchList/HeaderSearchList";
+import HeaderSearchList from "../HeaderSearchList/HeaderSearchList.tsx";
+import { RefObject } from "react";
+
+export type ListRefType = LegacyRef<HTMLUListElement>
 
 const HeaderInput = () => {
 
     const dispatch = useDispatch();
-    const inputRef = useRef<HTMLInputElement>();
-    const listRef = useRef<HTMLUListElement>();
+    const inputRef: RefObject<HTMLInputElement> = useRef(null);
+    const listRef = useRef<HTMLUListElement>(null);
 
-    const searchListState = useSelector((state) => state.ui.searchList)
-    const closeButtonState = useSelector((state) => state.ui.buttonInp)
-    const vpMobileState = useSelector((state) => state.ui.vpMobile)
-    const windowWidthState = useSelector((state) => state.ui.windowWidth)
-    const removeSelector = useSelector((state) => state.ui.isRemove)
-    const inputState = useSelector((state) => state.ui.inpValue)
+    const searchListState = useSelector((state:UISliceState) => state.ui.searchList)
+    const closeButtonState = useSelector((state:UISliceState) => state.ui.buttonInp)
+    const vpMobileState = useSelector((state:UISliceState) => state.ui.vpMobile)
+    const windowWidthState = useSelector((state:UISliceState) => state.ui.windowWidth)
+    const removeSelector = useSelector((state:UISliceState) => state.ui.isRemove)
+    const inputState = useSelector((state:UISliceState) => state.ui.inpValue)
     const [searchData, setSearchData] = useState<Movies | null>(null);
 
     
@@ -30,11 +33,11 @@ const HeaderInput = () => {
         dispatch(isSearchList(true))
     };
 
-    const handleOutsideClick = (e) => {
+    const handleOutsideClick = (e:MouseEvent) => {
         if(windowWidthState > 1023) {
-            if (e.target.offsetParent !== listRef.current) closeList();
+            if (e.target instanceof HTMLElement && e.target.offsetParent !== listRef.current) closeList();
         } else {
-            if (!e.target.contains(inputRef.current)) closeList();
+            if (!(e.target instanceof HTMLElement) || !inputRef.current?.contains(e.target as HTMLElement)) closeList();
         }
     }
     
@@ -45,7 +48,7 @@ const HeaderInput = () => {
     }
 
 
-    const handleSearchTitle = (value) => {
+    const handleSearchTitle = (value:string) => {
         dispatch(setInpValue(value))
         value ? sendData(value) : dispatch(isSearchList(false)); 
     }

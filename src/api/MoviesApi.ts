@@ -1,7 +1,7 @@
-import { IMovie, Movies, GenreRequest } from "../models/Movies";
-import { validateResponse } from "./validateResponse";
-import { BASE_URL } from "./config";
-import { UserSchema, User } from "../models/User";
+import { IMovie, Movies, GenreRequest } from "../models/Movies.ts";
+import { validateResponse } from "./validateResponse.ts";
+import { BASE_URL } from "./config.ts";
+import { User } from "../models/User.ts";
 
 // export const getFilterMovie = async (): Promise<Movies> => {
 //     const url = `${BASE_URL}/movie`;

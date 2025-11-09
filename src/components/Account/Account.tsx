@@ -1,22 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import { queryClient } from "../../api/queryClient";
-import { getProfileUser } from "../../api/UserApi";
+import { queryClient } from "../../api/queryClient.ts";
+import { getProfileUser } from "../../api/UserApi.ts";
 import '../Header/style.scss'
-import AuthForm from "../AuthForm/AuthForm";
-import { HeaderLoader } from "../Loader/HeaderLoader";
+import AuthForm from "../AuthForm/AuthForm.tsx";
+import { HeaderLoader } from "../Loader/HeaderLoader.tsx";
 import { Link, } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginSuccess, authModalOpen, authModalClose } from "../../store/AuthSlice";
+import { loginSuccess, authModalOpen, authModalClose } from "../../store/AuthSlice.tsx";
 import { useState, useEffect } from "react";
-import { isSearchList } from "../../store/UISlice";
+import { isSearchList } from "../../store/UISlice.tsx";
+import { UISliceState } from "../../store/UISlice.tsx";
+import { AuthInitialState } from "../../store/AuthSlice.tsx";
 
 export const Account = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const dispatch = useDispatch()
     // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    const searchListState = useSelector((state) => state.ui.searchList)
-    const isModal = useSelector((state) => state.auth.loginModalWindow);
-    const pathname = useSelector((state) => state.ui.activeURL)
+    const searchListState = useSelector((state:UISliceState) => state.ui.searchList)
+    const isModal = useSelector((state:AuthInitialState) => state.auth.loginModalWindow);
+    const pathname = useSelector((state:UISliceState) => state.ui.activeURL)
 
 
     const handleClickEnter = () => {

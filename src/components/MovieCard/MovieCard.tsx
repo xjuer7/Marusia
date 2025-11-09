@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Api from "../../api/api";
+import Api from "../../api/api.ts";
 import { useEffect  } from "react";
-import MovieCardTemplate from "../MovieCardTemplate/MovieCardTemplate";
-import { setMoviesCard } from "../../store/MovieSlice";
+import MovieCardTemplate from "../MovieCardTemplate/MovieCardTemplate.tsx";
+import { setMoviesCard, MovieSliceState} from "../../store/MovieSlice.tsx";
 import "./style.scss";
 
 const MovieCard = () => {
   const dispatch = useDispatch()
-  const movieState = useSelector((state) => state.data.moviesCard);
+  const movieState = useSelector((state:MovieSliceState) => state.data.moviesCard);
 
   const { movieId } = useParams();
 
@@ -29,7 +29,6 @@ const MovieCard = () => {
           <MovieCardTemplate
             data={movieState}
             mainPage={false}
-            onChange={undefined}
           />
           <div className="movie__parameter">
             <h2 className="movie__parameter_title">О фильме</h2>

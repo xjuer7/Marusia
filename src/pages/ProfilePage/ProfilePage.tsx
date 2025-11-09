@@ -1,9 +1,10 @@
 import {  useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Profile from "../../components/Profile/Profile";
-import MovieListFiltered from "../../components/Profile/MovieListFiltered";
+import Profile from "../../components/Profile/Profile.tsx";
+import MovieListFiltered from "../../components/Profile/MovieListFiltered.tsx";
 import { useDispatch } from "react-redux";
-import { changeActiveUrl } from "../../store/UISlice";
+import { changeActiveUrl } from "../../store/UISlice.tsx";
+import { AuthInitialState } from "../../store/AuthSlice.tsx";
 
 import './style.scss'
 
@@ -13,7 +14,7 @@ const ProfilePage = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const dispatch = useDispatch()
-    const userInfo = useSelector((state) => state.auth.userInfo);
+    const userInfo = useSelector((state:AuthInitialState) => state.auth.userInfo);
 
     useEffect(() => {
       dispatch(changeActiveUrl('/profile')) 
@@ -52,7 +53,7 @@ const ProfilePage = () => {
         {windowWidth > 650 ? ` Настройка аккаунта`: `Настройки`}
         </button>
         </div>
-        {param == 'account' ? <Profile /> :  <MovieListFiltered arrMovie={userInfo.favorites}/>}
+        {param == 'account' ? <Profile /> :  <MovieListFiltered arrMovie={userInfo.favorites || []}/>}
        
         </div>
         

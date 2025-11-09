@@ -1,17 +1,15 @@
 import { Routes, Route } from "react-router-dom"
 import { lazy } from "react"
 import { BrowserRouter } from "react-router-dom"
-import Header from "./components/Header/Header"
-import Footer from "./components/Footer/Footer"
+import Header from "./components/Header/Header.tsx"
+import Footer from "./components/Footer/Footer.tsx"
 import './base.scss'
 
-
-
-const LazyHomePage = lazy(() => import("./pages/MainPage/MainPage"))
-const LazyGenresPage = lazy(() => import('./pages/GenresPage/GenresPage'))
-const LazyMovieList = lazy(() => import('../src/components/MoviesFilteredGenre/MoviesFilteredGenre'))
-const LazyMovieCard = lazy(() => import('../src/components/MovieCard/MovieCard'))
-const LazyProfilePage = lazy(() => import('../src/pages/ProfilePage/ProfilePage'))
+const LazyHomePage = lazy(() => import("./pages/MainPage/MainPage.tsx"))
+const LazyGenresPage = lazy(() => import('./pages/GenresPage/GenresPage.tsx'))
+const LazyMovieList = lazy(() => import('../src/components/MoviesFilteredGenre/MoviesFilteredGenre.tsx'))
+const LazyMovieCard = lazy(() => import('../src/components/MovieCard/MovieCard.tsx'))
+const LazyProfilePage = lazy(() => import('../src/pages/ProfilePage/ProfilePage.tsx'))
 
 export function App () {
     return (

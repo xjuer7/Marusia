@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
-import { removeFavoriteMovie } from "../../api/MoviesApi";
-import { queryClient } from "../../api/queryClient";
-import { updateUserInfo } from "../../store/AuthSlice";
+import { removeFavoriteMovie } from "../../api/MoviesApi.ts";
+import { queryClient } from "../../api/queryClient.ts";
+import { updateUserInfo } from "../../store/AuthSlice.tsx";
 import { useState } from "react";
+import { IMovie } from "../../models/Movies.ts";
 
-export const MoviesListItem = ({movie, num, index, btn}) => {
+export const MoviesListItem = ({movie, num, index, btn}: {movie:IMovie, num:boolean, index:number, btn:boolean}) => {
     const dispatch = useDispatch();
     const [isRemove, setIsRemove] = useState(false)
 

@@ -1,4 +1,4 @@
-import { registrationFailure } from "../../store/AuthSlice";
+import { registrationFailure } from "../../store/AuthSlice.tsx";
 import "../AuthForm/style.scss";
 import {  useDispatch} from "react-redux";
 

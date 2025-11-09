@@ -1,6 +1,17 @@
 import {
   createSlice,
 } from "@reduxjs/toolkit";
+import { GenreRequest, IMovie } from "../models/Movies.ts";
+
+export interface MovieState {
+    moviesList: null,
+    moviesCard: IMovie | null,
+    genreList: GenreRequest | null,
+}
+
+export interface MovieSliceState {
+    data: MovieState
+}
 
 
 const movieSlice = createSlice({

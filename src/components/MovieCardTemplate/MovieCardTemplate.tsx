@@ -1,10 +1,11 @@
-import { Loader } from "../Loader/Loader";
-import MovieBtnGroup from "../MovieRandom/MovieBtnGroup";
+import { Loader } from "../Loader/Loader.tsx";
+import MovieBtnGroup from "../MovieRandom/MovieBtnGroup.tsx";
+import { IMovie } from "../../models/Movies.ts";
 import "./style.scss";
 // import "../../base.scss";
 
 
-const MovieCardTemplate = ({ data, mainPage, onChange }) => {
+const MovieCardTemplate = ({ data, mainPage, onChange }: { data: IMovie, mainPage:boolean, onChange?:() => void }) => {
 
   return (
     <>

@@ -2,6 +2,19 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 
+export interface UIState {
+    activeURL: string,
+    searchList: boolean,
+    buttonInp: boolean,
+    vpMobile: boolean,
+    windowWidth: number,
+    isRemove: boolean,
+    inpValue: string,
+}
+
+export interface UISliceState {
+    ui: UIState
+}
 
 const UISlice = createSlice({
     name: 'ui',

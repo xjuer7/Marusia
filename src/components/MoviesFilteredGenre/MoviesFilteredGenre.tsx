@@ -1,19 +1,19 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Movies } from "../../models/Movies";
-import MoviesListOnGenre from "../MoviesListOnGenre/MoviesListOnGenre";
-import { basicUrl } from "../../api/MoviesApi";
+import { IMovie, Movies } from "../../models/Movies.ts";
+import MoviesListOnGenre from "../MoviesListOnGenre/MoviesListOnGenre.tsx";
+import { basicUrl } from "../../api/MoviesApi.ts";
 import { Link } from "react-router-dom";
-import { Loader } from "../Loader/Loader";
+import { Loader } from "../Loader/Loader.tsx";
 import '../MovieCardTemplate/style.scss'
 import { useDispatch } from "react-redux";
-import { changeActiveUrl } from "../../store/UISlice";
+import { changeActiveUrl } from "../../store/UISlice.tsx";
 
 const MoviesFilteredGenre = () => {
   const location = useLocation();
   const navigate = useNavigate()
   const searchParams = new URLSearchParams(location.search);
-  const searchGenre = searchParams.get("genre");
+  const searchGenre: string | null = searchParams.get("genre") ;
   const [list, setList] = useState<Movies | null>(null);
   const dispatch = useDispatch()
 
@@ -27,7 +27,7 @@ const MoviesFilteredGenre = () => {
     if (data.length === 0) {
       setList([]);
     } else {
-      const sortedArr = data.sort((a, b) => b.tmdbRating - a.tmdbRating);
+      const sortedArr = data.sort((a:IMovie, b:IMovie) => b.tmdbRating - a.tmdbRating);
       setList(sortedArr);
     }
   };
@@ -37,9 +37,9 @@ const MoviesFilteredGenre = () => {
     dispatch(changeActiveUrl('/genre')) 
   }, [searchGenre]);
 
-  const searchGenreTitle =
-    searchGenre?.slice(0, 1).toUpperCase() +
-    searchGenre?.slice(1).toLowerCase();
+  const searchGenreTitle = searchGenre 
+  ? `${searchGenre.slice(0, 1).toUpperCase()}${searchGenre.slice(1)}`
+  : "";
 
   return (
     <>

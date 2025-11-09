@@ -1,21 +1,22 @@
 
 import "../AuthForm/style.scss";
 import { useForm } from "react-hook-form";
-import { UserRegister, UserRegisterSchema } from "../../models/User";
+import { UserRegister, UserRegisterSchema } from "../../models/User.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { useBtnChanger } from "../hooks/useBtnChanger";
-import { queryClient } from "../../api/queryClient";
-import { registerUser } from "../../api/UserApi";
+import { useBtnChanger } from "../hooks/useBtnChanger.tsx";
+import { queryClient } from "../../api/queryClient.ts";
+import { registerUser } from "../../api/UserApi.ts";
 import { useDispatch } from "react-redux";
-import { registrationFailure, registrationSuccess } from "../../store/AuthSlice";
+import { registrationFailure, registrationSuccess, AuthInitialState } from "../../store/AuthSlice.tsx";
 import { useSelector } from "react-redux";
-import RegisterSuccess from "../RegisterSuccess/RegisterSuccess";
+import { ChangeEvent } from "react";
+import RegisterSuccess from "../RegisterSuccess/RegisterSuccess.tsx";
 
 
 const RegisterForm = () => {
   const { btnText, setBtnText } = useBtnChanger("Создать аккаунт");
-  const isRegistration = useSelector(state => state.auth.isRegistration)
+  const isRegistration = useSelector((state:AuthInitialState) => state.auth.isRegistration)
   const dispatch = useDispatch()
 
   const {
@@ -43,8 +44,8 @@ const RegisterForm = () => {
     queryClient
   );
 
-  const handleResetError = (event) => {
-    const fieldName = event.target.name;
+  const handleResetError = (event:ChangeEvent<HTMLInputElement>) => {
+    const fieldName = event.target.name as keyof UserRegister;
     if (errors[fieldName]) {
       clearErrors(fieldName);
     }

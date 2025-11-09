@@ -1,10 +1,11 @@
 import {  useState } from "react";
-import { Loader } from "../Loader/Loader";
-import { MoviesListItem } from "../MoviesListItem/MoviesListItem";
+import { Loader } from "../Loader/Loader.tsx";
+import { MoviesListItem } from "../MoviesListItem/MoviesListItem.tsx";
+import { Movies } from "../../models/Movies.ts";
 import './style.scss'
 
 
-const MoviesListOnGenre = ({ data }) => {
+const MoviesListOnGenre = ({ data }: { data:Movies }) => {
         const [currentItems, setCurrentItems] = useState(data.slice(0, 10));
         const [startItem, setStartItem] = useState(10);
     
@@ -20,7 +21,7 @@ const MoviesListOnGenre = ({ data }) => {
         <>
         <ul className={`movie_list movie_list-genre`}>
                 {currentItems.map((movie, index) => (
-                    <MoviesListItem movie={movie} num={false} index={index} key={movie.id}/>
+                    <MoviesListItem movie={movie} num={false} index={index} btn={false}/>
                 ))}
             </ul>
             {currentItems.length !== 50 && <button className="movie_list__btn" onClick={handleClick}>Показать еще</button>}

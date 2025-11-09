@@ -28,5 +28,5 @@ export interface IMovie {
 }
 
 export type Movies = IMovie[];
-export type GenreRequest = Pick<IMovie, 'genres'>
+export type GenreRequest = IMovie['genres'];
 

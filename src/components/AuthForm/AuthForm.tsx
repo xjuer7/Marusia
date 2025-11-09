@@ -1,13 +1,14 @@
 
-import LoginForm from "../LoginForm/LoginForm";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import LoginForm from "../LoginForm/LoginForm.tsx";
+import RegisterForm from "../RegisterForm/RegisterForm.tsx";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { AuthInitialState } from "../../store/AuthSlice.tsx";
 import "./style.scss";
 
 
-const AuthForm = ({ handleCloseModal }) => {
-  const authType = useSelector(state => state.auth.authType)
+const AuthForm = ({ handleCloseModal }: { handleCloseModal: () => void }) => {
+  const authType = useSelector((state:AuthInitialState) => state.auth.authType)
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
 

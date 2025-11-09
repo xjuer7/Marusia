@@ -1,9 +1,9 @@
-import { queryClient } from "../../api/queryClient";
+import { queryClient } from "../../api/queryClient.ts";
 import { useMutation } from "@tanstack/react-query";
-import { logoutUser } from "../../api/UserApi";
-import { useBtnChanger } from "../hooks/useBtnChanger";
+import { logoutUser } from "../../api/UserApi.ts";
+import { useBtnChanger } from "../hooks/useBtnChanger.tsx";
 import { useDispatch } from "react-redux";
-import { logout } from "../../store/AuthSlice";
+import { logout } from "../../store/AuthSlice.tsx";
 import { useNavigate } from "react-router-dom";
 
 const LogoutButton = () => {

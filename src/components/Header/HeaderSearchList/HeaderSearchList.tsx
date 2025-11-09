@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-import HeaderSearchCard from '../HeaderSearchCard/HeaderSearchCard'
+import HeaderSearchCard from '../HeaderSearchCard/HeaderSearchCard.tsx'
 import { useDispatch, useSelector } from "react-redux";
-import { setInpValue } from "../../../store/UISlice";
+import { setInpValue, UISliceState } from "../../../store/UISlice.tsx";
+import { Movies } from "../../../models/Movies.ts";
+import { ListRefType } from "../HeaderInput/HeaderInput.tsx";
 
 
-const HeaderSearchList = ({data, listRef, closeList}) => {
-    const removeSelector = useSelector((state) => state.ui.isRemove)
+const HeaderSearchList = ({data, listRef, closeList} : {data: Movies | null, listRef:ListRefType, closeList: () => void}) => {
+    const removeSelector = useSelector((state:UISliceState) => state.ui.isRemove)
     const dispatch = useDispatch()
 
     return (

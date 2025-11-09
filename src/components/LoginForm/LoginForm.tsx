@@ -1,13 +1,15 @@
 import "../AuthForm/style.scss";
-import { UserLogin, UserLoginSchema } from "../../models/User";
+import { UserLogin, UserLoginSchema } from "../../models/User.ts";
 import { useForm } from "react-hook-form";
-import { useBtnChanger } from "../hooks/useBtnChanger";
+import { useBtnChanger } from "../hooks/useBtnChanger.tsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
-import { loginFailure, loginSuccess } from "../../store/AuthSlice";
-import { queryClient } from "../../api/queryClient";
+import { loginFailure, loginSuccess } from "../../store/AuthSlice.tsx";
+import { queryClient } from "../../api/queryClient.ts";
 import { useMutation } from "@tanstack/react-query";
-import { login } from "../../api/UserApi";
+import { login } from "../../api/UserApi.ts";
+import { ChangeEvent } from "react";
+
 
 const LoginForm = () => {
   const {
@@ -42,8 +44,8 @@ const LoginForm = () => {
     queryClient
   );
 
-  const handleResetError = (event) => {
-    const fieldName = event.target.name;
+  const handleResetError = (event:ChangeEvent<HTMLInputElement>) => {
+    const fieldName = event.target.name as keyof UserLogin;
     if (errors[fieldName]) {
       clearErrors(fieldName)
     }

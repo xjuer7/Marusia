@@ -1,11 +1,11 @@
-import Api from "../../api/api"
-import { MoviesListItem } from "../MoviesListItem/MoviesListItem";
+import Api from "../../api/api.ts"
+import { MoviesListItem } from "../MoviesListItem/MoviesListItem.tsx";
 import { useEffect, useState } from "react";
-import { Movies } from "../../models/Movies";
+import { Movies } from "../../models/Movies.ts";
 import '../MoviesListTop/MoviesListTop/style.scss'
 
 
-const MovieListFiltered = ({arrMovie}) => {
+const MovieListFiltered = ({arrMovie} : {arrMovie:string[]}) => {
     const [data, setData] = useState<Movies | null>(null);
 
     const getData = async (id: string) => {

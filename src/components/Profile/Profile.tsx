@@ -1,15 +1,17 @@
 import { useSelector } from "react-redux";
-import LogoutButton from "./LogoutButton";
-import { Loader } from "../Loader/Loader";
+import LogoutButton from "./LogoutButton.tsx";
+import { Loader } from "../Loader/Loader.tsx";
+import { AuthInitialState } from "../../store/AuthSlice.tsx";
 import './style.scss'
 
 const Profile = () => {
   
-  const userInfo = useSelector((state) => state.auth.userInfo);
+  const userInfo = useSelector((state:AuthInitialState) => state.auth.userInfo);
   if(!userInfo) return <Loader />
 
-  const nameTransform = userInfo.name.slice(0,1).toUpperCase() + userInfo.name.slice(1).toLowerCase();
-  const surnameTransform = userInfo.surname.slice(0,1).toUpperCase() + userInfo.surname.slice(1).toLowerCase();
+  const nameTransform = userInfo.name ? userInfo.name.slice(0,1).toUpperCase() + userInfo.name.slice(1).toLowerCase() : '';
+  const surnameTransform =userInfo.surname ?  userInfo.surname.slice(0,1).toUpperCase() + userInfo.surname.slice(1).toLowerCase() : '';
+  const fullNameInitials = `${userInfo.name?.slice(0, 1)?.toUpperCase()}${userInfo.surname?.slice(0, 1)?.toUpperCase()}`;
 
 
   return userInfo &&(
@@ -17,7 +19,7 @@ const Profile = () => {
      <div className="profile__card__inner">
       <div className="profile__card__wrapper">
         <span className="profile__card-circle">
-          <span className="profile__card-circle__info">{`${userInfo.name.slice(0, 1).toUpperCase()}${userInfo.surname.slice(0, 1).toUpperCase()}`}</span>
+          <span className="profile__card-circle__info">{fullNameInitials}</span>
         </span>
         <div className="profile__card__text">
           <span className="profile__card__text-abr">Имя Фамилия</span>

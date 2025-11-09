@@ -1,8 +1,9 @@
-import { toHoursAndMinutes } from "../../MovieCardTemplate/MovieCardTemplate";
-import { checkBgRating } from "../../MovieCardTemplate/MovieCardTemplate";
+import { toHoursAndMinutes } from "../../MovieCardTemplate/MovieCardTemplate.tsx";
+import { checkBgRating } from "../../MovieCardTemplate/MovieCardTemplate.tsx";
+import { IMovie } from "../../../models/Movies.ts";
 import './search.scss'
 
-const HeaderSearch = ({ data }) => {
+const HeaderSearch = ({ data } : {data:IMovie}) => {
   return (
     <div className="header-search__container">
       <img src={data.posterUrl} alt="постер" className="header-search__img" />
