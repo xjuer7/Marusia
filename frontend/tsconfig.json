@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"target": "ES2017",
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"lib": ["ESNext", "DOM"],
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"esModuleInterop": true,
+		"jsx": "react-jsx"
+	},
+	"include": ["frontend/src"]
+}
