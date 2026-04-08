@@ -50,6 +50,7 @@ const login = async (req, res) => {
   return res.json({ message: 'Авторизация прошла успешно', token})
 }
 
+
 module.exports = { register, login }
 
 

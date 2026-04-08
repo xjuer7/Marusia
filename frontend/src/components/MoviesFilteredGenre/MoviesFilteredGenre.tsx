@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { IMovie, Movies } from "../../models/Movies.ts";
+import { Movie, Movies } from "../../models/Movies.ts";
 import MoviesListOnGenre from "../MoviesListOnGenre/MoviesListOnGenre.tsx";
-import { basicUrl } from "../../api/MoviesApi.ts";
+import { basicMovieUrl } from "../../api/MoviesApi.ts";
 import { Link } from "react-router-dom";
 import { Loader } from "../Loader/Loader.tsx";
 import '../MovieCardTemplate/style.scss'
@@ -21,13 +21,13 @@ const MoviesFilteredGenre = () => {
     if (!searchGenre) {
       return;
     }
-    const response = await fetch(`${basicUrl}?genre=${searchGenre}`);
+    const response = await fetch(`${basicMovieUrl}?genre=${searchGenre}`);
     const data = await response.json();
 
     if (data.length === 0) {
       setList([]);
     } else {
-      const sortedArr = data.sort((a:IMovie, b:IMovie) => b.tmdbRating - a.tmdbRating);
+      const sortedArr = data.sort((a:Movie, b:Movie) => b.tmdbRating - a.tmdbRating);
       setList(sortedArr);
     }
   };

@@ -25,18 +25,19 @@ const MainPage = () => {
       };
     
       useEffect(() => {
-        getData();
+        // getData();
         dispatch(changeActiveUrl('/'))
       }, [])
 
 
     return (
         <Suspense fallback={<Loader />}>
+          <MovieRandom/>
         {dataState ? (
           <div className="content" key={location.key}>
             <MovieRandom/>
             <h3 className='content__title'>Топ 10 фильмов</h3>
-            <LazyMoviesListTop data={dataState} num={true}/>
+            {/* <LazyMoviesListTop data={dataState} num={true}/> */}
         </div>
         ): (<Loader/>)}
         </Suspense>

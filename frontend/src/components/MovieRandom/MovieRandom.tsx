@@ -11,6 +11,7 @@ const MovieRandom = () => {
 
   const getData = async (): Promise<void>  => { 
      const data = await Api.getMovieRandom();
+     console.log(data)
      dispatch(setMoviesCard(data))
   };
 

@@ -1,14 +1,11 @@
 const crypto = require("crypto");
 
 const users = []
-const avatarDefault = ''
 
 const User = {
   create: (obj) => {
     const idRandom = crypto.randomUUID()
-    const user = {...obj, avatarDefault }
-    user.id = idRandom
-    user.favorites = []
+    const user = {...obj, id: idRandom, avatarDefault: '', favorites: []}
     users.push(user)
     return user
   },
@@ -17,34 +14,38 @@ const User = {
     return users.find(({ email }) => email === name)
   },
 
-  findById: (userId) => {
-    return users.find(({ id }) => id === userId)
+  findById: (id) => {
+    return users.find((user) => user.id === id)
   },
 
-  addFavoriteMovie: (userId, movieId) => {
-    const user = User.findById(userId)
+  addFavoriteMovie: (id, movieId) => {
+    const user = User.findById(id)
     if(user) {
       const movieFav = user.favorites.find((el) => el === movieId)
       if(!movieFav) user.favorites.push(movieId)
+    } else {
+      throw new Error('Пользователь не найден')
     }
   },
-  removeFavoriteMovie: (userId, movieId) => {
-    const user = User.findById(userId)
+
+  removeFavoriteMovie: (id, movieId) => {
+    const user = User.findById(id)
     if(user) {
       const idx = user.favorites.indexOf(movieId)
       if(idx > -1) user.favorites.splice(idx, 1)
+    } else {
+      throw new Error('Пользователь не найден')
     }
-   
   },
 
-  getFavorites: (userId) => {
-    const user = User.findById(userId);
+  getFavorites: (id) => {
+    const user = User.findById(id);
     if(user) return user.favorites
     return []
   },
 
-  setAvatar: (userId, avatar) => {
-    const user = User.findById(userId)
+  setAvatar: (id, avatar) => {
+    const user = User.findById(id)
     user.avatarDefault = avatar
     return user
   }

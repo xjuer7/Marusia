@@ -1,6 +1,6 @@
 import { useSelector, useDispatch} from "react-redux";
 import { useRef, useState, useEffect, LegacyRef} from "react";
-import { basicUrl } from "../../../api/MoviesApi.ts";
+import { basicMovieUrl } from "../../../api/MoviesApi.ts";
 import { Movies } from "../../../models/Movies.ts";
 import { isSearchList, isButtonInp, isMobile, isWindowWidth,styleRemove, setInpValue, UISliceState} from "../../../store/UISlice.tsx";
 
@@ -25,7 +25,7 @@ const HeaderInput = () => {
 
     
     const sendData = async (value: string) => {
-        fetch(`${basicUrl}?title=${value}`)
+        fetch(`${basicMovieUrl}?title=${value}`)
         .then((response) => response.json())
         .then((json) => json.slice(0, 5))
         .then((data) => setSearchData(data));

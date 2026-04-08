@@ -1,67 +1,53 @@
-import { IMovie, Movies, GenreRequest } from "../models/Movies.ts";
+import { Movie, Movies } from "../models/Movies.ts";
 import { validateResponse } from "./validateResponse.ts";
-import { BASE_URL } from "./config.ts";
+import { MOVIES_URL, BASE_URL } from "./config.ts";
 import { User } from "../models/User.ts";
 
-// export const getFilterMovie = async (): Promise<Movies> => {
-//     const url = `${BASE_URL}/movie`;
-//     const response = await fetch(url);
-// 	const data = await response.json();
-// 	return data;
-// }
-export const basicUrl = `${BASE_URL}/movie`;
+export const basicMovieUrl = MOVIES_URL;
 
-export const getMovie = async ( movieId: string | undefined): Promise<IMovie> => {
-    const url = `${BASE_URL}/movie/${movieId}`;
+export const getMovie = async ( movieId: string | undefined): Promise<Movie> => {
+    const url = `${basicMovieUrl}?${movieId}`;
     const response = await fetch(url);
 	const data = await response.json();
 	return data;
 }
 export const getMoviesTOP10 = async (): Promise<Movies> => {
-    const url = `${BASE_URL}/movie/top10`;
+    const url = `${MOVIES_URL}/movie/top10`;
     const response = await fetch(url);
 	const data = await response.json();
 	return data;
 }
 
-export const getMoviesGenre = async ():Promise<GenreRequest> => {
-    const url = `${BASE_URL}/movie/genres`;
+export const getMovieRandom = async (): Promise<void> => {
+    const url = `${MOVIES_URL}/random`;
     const response = await fetch(url);
 	const data = await response.json();
-	return data;
+    console.log(data)
+	return data.data;
 }
 
-export const getMovieRandom = async (): Promise<IMovie> => {
-    const url = `${BASE_URL}/movie/random`;
-    const response = await fetch(url);
-	const data = await response.json();
-	return data;
-}
-
-export const addFavoriteMovie = async ( id: string): Promise<User> => {
-    return fetch(`${BASE_URL}/favorites`, {
-            credentials: "include",
+export const addFavoriteMovie = async ( id: string) => {
+    return fetch(`${BASE_URL}/favorite`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${sessionStorage.getItem('data')}`
             },
-            body: `id=${encodeURIComponent(id)}`,
+            body: JSON.stringify({ id }),
         })
         .then(validateResponse)
         .then((response) => response.json())
-        // .then((data) => {
-        //     return UserSchema.parse(data);
-        // })
+        .catch(() => new Error('Не удалось добавить в избранное'))
 }
 
-export const removeFavoriteMovie = async ( id: string): Promise<void> => {
-    return fetch(`${BASE_URL}/favorites/${id}`, {
-            credentials: "include",
+export const removeFavoriteMovie = async ( id: string) => {
+    return fetch(`${BASE_URL}/favorite/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
         })
         .then(validateResponse)
-        .then(() => undefined)
+        .then((response) => response.json())
+        .catch(() => new Error('Не удалось удалить из избранного'))
 }

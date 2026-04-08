@@ -1,5 +1,5 @@
 export const BASE_URL = '/api';
-export const MOVIES_URL = 'https://api.kinocheck.com/';
+export const MOVIES_URL = 'https://jsonfakery.com/movies';
 
 export const defaultConfig = {
     headers: {
