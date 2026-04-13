@@ -7,7 +7,7 @@ import './base.scss'
 
 const LazyHomePage = lazy(() => import("./pages/MainPage/MainPage.tsx"))
 const LazyGenresPage = lazy(() => import('./pages/GenresPage/GenresPage.tsx'))
-const LazyMovieList = lazy(() => import('../src/components/MoviesFilteredGenre/MoviesFilteredGenre.tsx'))
+const LazyMovieListOnGenre = lazy(() => import('../src/components/MoviesFilteredGenre/MoviesFilteredGenre.tsx'))
 const LazyMovieCard = lazy(() => import('../src/components/MovieCard/MovieCard.tsx'))
 const LazyProfilePage = lazy(() => import('../src/pages/ProfilePage/ProfilePage.tsx'))
 
@@ -19,7 +19,7 @@ export function App () {
                 <Route path="/" element={<LazyHomePage />} />
                 <Route path="/profile" element={<LazyProfilePage />} />
                 <Route path="/genre" element={<LazyGenresPage />}/>
-                <Route path="/movie" element={<LazyMovieList />}/>
+                <Route path="/movie" element={<LazyMovieListOnGenre />}/>
                 <Route path="/movie/:movieId" element={<LazyMovieCard/>}/>
             </Routes>
             <Footer/>

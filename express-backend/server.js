@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const User = require('./models/User')
 
 const express = require("express");
@@ -10,13 +11,12 @@ const authenticate = require('./middleware/authMiddleware');
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(cors({ origin: 'http://localhost:8000'}))
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }))
 
 app.use(express.json())
 
 app.post('/api/auth/register', register);
 app.post('/api/auth/login', login);
-
 app.get('/api/auth/me', authenticate, (req, res) => {
   const { email } = req.user
   const fullUser = User.findByEmail(email)

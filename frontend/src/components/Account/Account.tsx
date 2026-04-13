@@ -19,7 +19,6 @@ export const Account = () => {
     const isModal = useSelector((state:AuthInitialState) => state.auth.loginModalWindow);
     const pathname = useSelector((state:UISliceState) => state.ui.activeURL)
 
-
     const handleClickEnter = () => {
         if(searchListState) dispatch(isSearchList(false))
         dispatch(authModalOpen())
@@ -30,7 +29,7 @@ export const Account = () => {
     const meQuery = useQuery(
     {
       queryFn: () => getProfileUser(), 
-      queryKey: ['profile'],
+      queryKey: ['user'],
     },
     queryClient
   )

@@ -5,7 +5,6 @@ import { AuthInitialState } from "../../store/AuthSlice.tsx";
 import './style.scss'
 
 const Profile = () => {
-  
   const userInfo = useSelector((state:AuthInitialState) => state.auth.userInfo);
   if(!userInfo) return <Loader />
 

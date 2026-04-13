@@ -2,7 +2,7 @@ import Api from "../../api/api.ts"
 import { MoviesListItem } from "../MoviesListItem/MoviesListItem.tsx";
 import { useEffect, useState } from "react";
 import { Movies } from "../../models/Movies.ts";
-import '../MoviesListTop/MoviesListTop/style.scss'
+import '../MoviesListSecondary/style.scss'
 
 
 const MovieListFiltered = ({arrMovie} : {arrMovie:string[]}) => {

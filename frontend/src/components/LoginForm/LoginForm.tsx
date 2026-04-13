@@ -31,8 +31,8 @@ const LoginForm = () => {
       },
       onSuccess(data) {
         dispatch(loginSuccess(data))
-        queryClient.invalidateQueries({ queryKey: ['profile'] });
-        queryClient.refetchQueries({ queryKey: ['profile'] });
+        queryClient.invalidateQueries({ queryKey: ['user'] });
+        queryClient.refetchQueries({ queryKey: ['user'] });
       },
       onError() {
         setBtnText("Попробовать снова");

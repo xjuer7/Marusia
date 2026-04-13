@@ -1,11 +1,16 @@
 import { Loader } from "../Loader/Loader.tsx";
 import MovieBtnGroup from "../MovieRandom/MovieBtnGroup.tsx";
-import { IMovie } from "../../models/Movies.ts";
+import { Movie } from "../../models/Movies.ts";
 import "./style.scss";
 // import "../../base.scss";
 
 
-const MovieCardTemplate = ({ data, mainPage, onChange }: { data: IMovie, mainPage:boolean, onChange?:() => void }) => {
+const MovieCardTemplate = ({ data, mainPage, onChange }: { data: Movie, mainPage:boolean, onChange?:() => void }) => {
+
+  const actors = data.persons
+  ?.filter((person) => person.enProfession == 'actor')
+  .slice(0, 10)
+  .map((person) => person.enName ?? person.name)
 
   return (
     <>
@@ -15,24 +20,36 @@ const MovieCardTemplate = ({ data, mainPage, onChange }: { data: IMovie, mainPag
         <div className="movie__details">
           <div className="movie__text">
             <span
-              style={{ backgroundColor: checkBgRating(data.tmdbRating) }}
+              style={{ backgroundColor: checkBgRating(data.rating.imdb) }}
               className="movie__stars"
             >
               <img src="/icon/star.svg" alt="иконка" />
-              {data.tmdbRating}
+              {data.rating.imdb}
             </span>
-            {data.releaseYear && (
-              <span className="movie__year">{data.releaseYear}</span>
+            {data.year && (
+              <span className="movie__year">{data.year}</span>
             )}
-            {data!.genres && (
-              <span className="movie__genre">{data!.genres.join(", ")}</span>
+            {data.genres && (
+              <span className="movie__genre">{
+                data.genres.map(({name}) => name).join(', ')
+              }</span>
             )}
-            <span className="movie__runtime">
-              {toHoursAndMinutes(data!.runtime)}
+            {data.countries && (
+              <span className="movie__genre">{
+                data.countries.map(({name}) => name).join(', ')
+              }</span>
+            )}
+            {data.movieLength && (
+              <span className="movie__runtime">
+              {toHoursAndMinutes(data.movieLength)}
             </span>
+            )}
           </div>
-          <h1 className="movie__title">{data!.title}</h1>
-          <p className="movie__descr">{data!.plot}</p>
+          <h1 className="movie__title">{data.name ?? data.alternativeName }</h1>
+          <p className="movie__descr">{data.description}</p>
+          {actors && (
+            <span className="movie__text">Актеры: {actors.join(', ')}</span>
+          )}
         </div>
 
         <MovieBtnGroup
@@ -42,16 +59,16 @@ const MovieCardTemplate = ({ data, mainPage, onChange }: { data: IMovie, mainPag
           />
       </div>
 
-      {data!.posterUrl ? (
+      {data.poster ? (
         <div className="movie__poster">
           <img
           className="movie__poster-img"
-          src={data.posterUrl}
-          alt={`Постер к фильму ${data.title}`}
+          src={data.poster.url ?? data.poster.previewUrl}
+          alt={`Постер к фильму ${data.name}`}
         />
         </div>
       ) : (
-        <div className="movie__poster_none">Постер временно отсутствует</div>
+        <div className="movie__poster_none">постер временно отсутствует</div>
       )}
     </div>
     ): (<div></div>)}</>
@@ -63,15 +80,10 @@ export default MovieCardTemplate;
 export const toHoursAndMinutes = (time: number) => {
   const hours = Math.floor(time / 60);
   const min = time % 60;
+  if (hours === 0) return `${time} min`;
 
-  if (hours === 0) {
-    return `${time} min`;
-  }
   const hoursEnds = hours > 1 ? `${hours} hours` : `${hours} hour`;
-
-  if (min === 0) {
-    return hoursEnds;
-  }
+  if (min === 0) return hoursEnds;
 
   return `${hoursEnds} ${min} min`;
 };

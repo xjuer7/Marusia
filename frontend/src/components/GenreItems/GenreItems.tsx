@@ -1,26 +1,18 @@
 import './style.scss'
 
 const genreImagesUrl: Record<string, string> = {
-    "action": '/img/action.webp',
-    "adventure": '/img/adventure.webp',
-    "history": '/img/history.webp',
-    "horror": '/img/horror.webp',
-    "scifi": '/img/scifi.webp',
-    "stand-up": '/img/stand-up.webp',
-    "fantasy": '/img/fantasy.webp',
-    "drama": '/img/drama.webp',
-    "mystery": '/img/mystery.webp',
-    "family": '/img/family.webp',
-    "comedy": '/img/comedy.webp',
-    "romance": '/img/romance.webp',
-    "music": '/img/music.webp',
-    "crime": '/img/crime.webp',
-    "tv-movie": '/img/tv-movie.webp',
-    "documentary": '/img/documentary.webp',
-    "thriller": '/img/thriller.webp',
-    "western": '/img/western.webp',
-    "animation": '/img/animation.webp',
-    "war": '/img/war.webp',
+    "боевик": '/img/action.webp',
+    "анимэ": '/img/anime.webp',
+    "история": '/img/history.webp',
+    "фэнтези": '/img/fantasy.webp',
+    "драма": '/img/drama.webp',
+    "для взрослых": '/img/mystery.webp',
+    "семейный": '/img/family.webp',
+    "комедия": '/img/comedy.webp',
+    "мелодрама": '/img/romance.webp',
+    "детектив": '/img/thriller.webp',
+    "мультфильмы": '/img/animation.webp',
+    "военный": '/img/war.webp',
 }
 
 export const GenreItems = ({ title }: {title: string}) => {
